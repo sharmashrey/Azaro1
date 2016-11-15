@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shreyas.io.weld.azaro.Database.DBHelper;
+import shreyas.io.weld.azaro.Model.StudentCourseModel;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -54,14 +55,14 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
     private View mProgressView;
     private View mLoginFormView;
 
-
+    private EditText mEditCourseName;
     private EditText mEditCourseLocationView;
     private EditText mEditCourseStartTime;
     private EditText mEditCourseEndTime;
     private EditText mEditCourseTimePeriod;
     private Button mSaveButton;
 
-
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,24 +70,40 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         setContentView(R.layout.activity_add_course);
 
         //make message text field & button object
+        mEditCourseName = (EditText) findViewById(R.id.EditCourseName);
         mEditCourseLocationView = (EditText) findViewById(R.id.EditCourseLocation);
         mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
         mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
         mEditCourseTimePeriod = (EditText) findViewById(R.id.EditCourseTimePeriod);
         mSaveButton = (Button) findViewById(R.id.save_button);
 
-        // ADD TO DATABASE DBHelper dbHelpr = new DBHelper(getBaseContext());
-        //  dbHelpr.addNewCourse()   ;
-
+       /* mSaveButton.OnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DoIt(v);
+            }
+        });
+*/
         //   Retrieve info from other end
         //    Extras are retrieved on the other side via:
         Intent intent = getIntent();
         String value = intent.getStringExtra("key"); //if it's a string you stored.
       }
 
+
+
     //When the send button is clicked
     public void send(View v)
     {
+        // ADD TO DATABASE
+        db = new DBHelper(getApplicationContext());
+
+        StudentCourseModel input1= new StudentCourseModel();
+        input1.setCourseName( mEditCourseName.getText().toString());
+        input1.setCourseLocation( mEditCourseLocationView.getText().toString());
+        input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
+        input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
+        db.addNewCourse(input1);
 
     }
 

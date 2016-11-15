@@ -10,7 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="shreyas.io.weld.azaro.AddCourseActivity">
 
-
+            <EditText
+                android:id="@+id/EditCourseName"
+                android:layout_height="wrap_content"
+                android:hint="@string/course_name"
+                android:inputType="textPostalAddress"
+                android:layout_width="fill_parent">
+            </EditText>
             <EditText
                 android:id="@+id/EditCourseLocation"
                 android:layout_height="wrap_content"
@@ -62,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/save_button"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="send"/>
 
 
 

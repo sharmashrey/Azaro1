@@ -25,15 +25,12 @@ public class CourseFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
-    DBHelper getdb;
     Context currentContext;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CourseFragment() {
-    }
+    public CourseFragment() {}
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
