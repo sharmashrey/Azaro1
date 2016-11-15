@@ -1,5 +1,6 @@
 package shreyas.io.weld.azaro;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,7 +27,7 @@ import shreyas.io.weld.azaro.Model.StudentTermModel;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, ThirdFragment.OnListFragmentInteractionListener {
 
-    int currentfragment = 0;
+    public int currentfragment = 0;
     // Database Helper
     DBHelper db;
 
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity
                     //launch related activity
                 }else if(currentfragment == 3){
                     //launch related activity
+                    Intent myIntent = new Intent(MainActivity.this, AddCourseActivity.class);
+                    myIntent.putExtra("key", 3); //Optional parameters
+                    MainActivity.this.startActivity(myIntent);
+
                 } else {
 
                 }
