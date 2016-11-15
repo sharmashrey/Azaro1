@@ -29,7 +29,6 @@
         <activity
             android:name=".AddCourseActivity"
             android:label="@string/title_activity_add_course" />
-        <activity android:name=".AdCourseActivity"></activity>
     </application>
 
 </manifest>

@@ -33,6 +33,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import shreyas.io.weld.azaro.Database.DBHelper;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -46,10 +48,19 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
     };private UserLoginTask mAuthTask = null;
 
     // UI references.
+    //create variables for storing message & button objects
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+
+    private EditText mEditCourseLocationView;
+    private EditText mEditCourseStartTime;
+    private EditText mEditCourseEndTime;
+    private EditText mEditCourseTimePeriod;
+    private Button mSaveButton;
+
 
 
     @Override
@@ -57,17 +68,30 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
 
+        //make message text field & button object
+        mEditCourseLocationView = (EditText) findViewById(R.id.EditCourseLocation);
+        mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
+        mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
+        mEditCourseTimePeriod = (EditText) findViewById(R.id.EditCourseTimePeriod);
+        mSaveButton = (Button) findViewById(R.id.save_button);
+
+        // ADD TO DATABASE DBHelper dbHelpr = new DBHelper(getBaseContext());
+        //  dbHelpr.addNewCourse()   ;
+
         //   Retrieve info from other end
         //    Extras are retrieved on the other side via:
         Intent intent = getIntent();
         String value = intent.getStringExtra("key"); //if it's a string you stored.
-
       }
 
+    //When the send button is clicked
+    public void send(View v)
+    {
+
+    }
+
     private void populateAutoComplete() {}
-
     private boolean mayRequestContacts() {return false;}
-
     /**
      * Callback received when a permissions request has been completed.
      */
