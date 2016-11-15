@@ -6,15 +6,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <string-array name="sports_array">
-        <item>Shuttle Badminton</item>
-        <item>Tennis</item>
-        <item>FootBall</item>
-        <item>Basket Ball</item>
-        <item>Table Tennis</item>
-        <item>Chess</item>
-        <item>Hockey</item>
-    </string-array>
     <string name="title_activity_add_course">Add Course</string>
 
     <!-- Strings related to login -->
@@ -33,9 +24,14 @@
     <string name="save_button">SAVE!</string>
     <string name="course_name">Name of Course</string>
     <string name="course_location">Location of Course</string>
-    <string name="course_start_time">Start Time</string>
-    <string name="course_end_time">End Time</string>
+    <string name="course_time">Start/End Time               (for 11 oclock write 11)</string>
+    <string name="course_start_time">StartTime</string>
+    <string name="course_end_time">EndTime</string>
     <string name="course_term">Term</string>
+    <string name="course_am_pm">am or pm</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

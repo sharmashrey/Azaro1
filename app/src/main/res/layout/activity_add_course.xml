@@ -10,74 +10,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="shreyas.io.weld.azaro.AddCourseActivity">
 
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/email_login_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/EditCourseLocation"
+                android:layout_height="wrap_content"
+                android:hint="@string/course_location"
+                android:inputType="textPostalAddress"
+                android:layout_width="fill_parent">
+            </EditText>
 
             <TextView
                 android:id="@+id/TextViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/course_name"
+                android:text="@string/course_time"
                 android:textSize="10pt">
             </TextView>
-
-            <EditText
-                android:id="@+id/EditTextName"
+            <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/course_start_time"
-                android:inputType="textPersonName"
-                android:layout_width="fill_parent">
-            </EditText>
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/EditCourseStartTime"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/course_start_time"
+                    android:inputType="time"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1">
+                </EditText>
+                <EditText
+                    android:id="@+id/EditCourseEndTime"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/course_end_time"
+                    android:inputType="time"
+                    android:layout_width="fill_parent" android:layout_weight="1">
+                </EditText>
+                <EditText
+                    android:id="@+id/EditCourseTimePeriod"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/course_am_pm"
+                    android:inputType="textCapWords"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1">
+                </EditText>
+        </LinearLayout>
+
 
             <Button
                 android:id="@+id/save_button"
@@ -88,6 +64,6 @@
                 android:text="@string/save_button"
                 android:textStyle="bold" />
 
-        </LinearLayout>
-    </ScrollView>
+
+
 </LinearLayout>
