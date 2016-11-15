@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import shreyas.io.weld.azaro.Model.StudentCourseModel;
-import shreyas.io.weld.azaro.ThirdFragment.OnListFragmentInteractionListener;
+import shreyas.io.weld.azaro.CourseFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 

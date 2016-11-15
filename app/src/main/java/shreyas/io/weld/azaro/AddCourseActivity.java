@@ -91,8 +91,8 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mSaveButton = (Button) findViewById(R.id.save_button);
+        mSaveButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();

@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.nfc.Tag;
 import android.util.Log;
 import java.util.List;
 
@@ -25,7 +24,7 @@ import shreyas.io.weld.azaro.Model.StudentCourseModel;
 import shreyas.io.weld.azaro.Model.StudentTermModel;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, ThirdFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, CourseFragment.OnListFragmentInteractionListener {
 
     public int currentfragment = 0;
     // Database Helper
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity
             fragment = SecondFragment.newInstance(null, null);
             currentfragment = 2;
         } else if (id == R.id.nav_slideshow) {
-            fragment = ThirdFragment.newInstance(6);
+            fragment = CourseFragment.newInstance(6);
             currentfragment = 3;
         } else if (id == R.id.nav_manage) {
 

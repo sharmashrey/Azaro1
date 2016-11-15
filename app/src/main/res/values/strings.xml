@@ -27,7 +27,15 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+        completions."</string>
+
+    <!-- Strings for Course -->
+    <string name="save_button">SAVE!</string>
+    <string name="course_name">Name of Course</string>
+    <string name="course_location">Location of Course</string>
+    <string name="course_start_time">Start Time</string>
+    <string name="course_end_time">End Time</string>
+    <string name="course_term">Term</string>
+
 
 </resources>
