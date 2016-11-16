@@ -1,5 +1,6 @@
 package shreyas.io.weld.azaro;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +20,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+
 import java.util.List;
 
 import shreyas.io.weld.azaro.Database.DBHelper;
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     public int currentfragment = 0;
     // Database Helper
     DBHelper db;
+    private String m_Text = ""; //text for inner fragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,5 +192,80 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(StudentCourseModel item) {
 
+        //first show an alert dialog to edit/delete. on delete click call delete method. on edit click
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(MainActivity.this);
+        builderSingle.setIcon(R.drawable.ic_speaker_dark);
+        builderSingle.setTitle("Select One Name:-");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                MainActivity.this,
+                R.layout.dialog_item_layout);
+        arrayAdapter.add("Update");
+        arrayAdapter.add("Delete");
+
+        builderSingle.setNegativeButton(
+                "cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builderSingle.setAdapter(
+                arrayAdapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        if(strName.equalsIgnoreCase("Update") ){
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(
+                                MainActivity.this);
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Update Relevant Info");
+
+                        // Set up the Edit Text Containing Information
+                        final EditText input = new EditText(MainActivity.this);
+// Specify the type of input expected; this, fo
+// r example, sets the input as a password, and will mask the text
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
+                        builderInner.setView(input);
+
+                        // Set up the buttons
+                        builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                m_Text = input.getText().toString();
+                            }
+                        });
+
+
+                        builderInner.setPositiveButton(
+                                "Ok",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builderInner.show();
+                    }else{  // Delete selected , implement it
+
+                        }
+
+
+                    }
+                });
+        builderSingle.show();
+        //for alert dialogue
+
+
+
+        //this is the item which was clicked.
+        //display all info in an alert dialog in edit texts. but button save. on click of that button
+        //call updatestudentcourse method and pass the new updated student course object
+        //
     }
 }

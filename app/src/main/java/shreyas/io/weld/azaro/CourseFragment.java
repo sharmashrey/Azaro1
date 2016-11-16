@@ -3,6 +3,7 @@ package shreyas.io.weld.azaro;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +32,10 @@ public class CourseFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public CourseFragment() {}
+
+    //refresh fragment
+   // FragmentTransaction ft = getFragmentManager().beginTransaction();
+   // ft.detach(this).attach(this).commit();
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")

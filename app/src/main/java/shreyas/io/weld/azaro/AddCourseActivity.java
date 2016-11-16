@@ -104,7 +104,7 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
         input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
         db.addNewCourse(input1);
-
+        finish();
     }
 
     private void populateAutoComplete() {}

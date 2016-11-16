@@ -60,7 +60,6 @@
                 </EditText>
         </LinearLayout>
 
-
             <Button
                 android:id="@+id/save_button"
                 style="?android:textAppearanceSmall"
@@ -70,7 +69,5 @@
                 android:text="@string/save_button"
                 android:textStyle="bold"
                 android:onClick="send"/>
-
-
 
 </LinearLayout>
