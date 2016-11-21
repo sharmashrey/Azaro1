@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings for selecting Task Type -->
+    <string-array name="tasks_array">
+        <item>Assignment</item>
+        <item>Exam</item>
+        <item>Project</item>
+        <item>Task</item>
+    </string-array>
+</resources>

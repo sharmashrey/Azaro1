@@ -9,7 +9,7 @@ package shreyas.io.weld.azaro.Model;
  *
  */
 
-public class StudentTermModel {
+public class Term {
 
     private int termId;
     private String termName;

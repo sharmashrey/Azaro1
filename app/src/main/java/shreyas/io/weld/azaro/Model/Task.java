@@ -11,13 +11,13 @@ package shreyas.io.weld.azaro.Model;
  * which due on every monday.
  */
 
-public class StudentRepeatableTaskModel {
-
+public class Task {
     private int taskId;
     private int taskCourseId;
     private String taskName;
     private String taskDescription;
     private long taskDueDate;
+    private int taskType;
 
     public int getTaskDueTime() {
         return taskDueTime;
@@ -69,4 +69,11 @@ public class StudentRepeatableTaskModel {
         this.taskDueDate = taskDueDate;
     }
 
+    public int getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(int taskType) {
+        this.taskType = taskType;
+    }
 }

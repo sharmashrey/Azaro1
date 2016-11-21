@@ -9,7 +9,7 @@ package shreyas.io.weld.azaro.Model;
  * This model is used to store Project details.
  */
 
-public class StudentProjectModel {
+public class Project {
 
     private int projectId;
     private int projectCourseId;

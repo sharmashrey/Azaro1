@@ -9,7 +9,7 @@ package shreyas.io.weld.azaro.Model;
  * This model will store the course details.
  */
 
-public class StudentCourseModel {
+public class Course {
 
     /**
      * How time is stored in system
@@ -17,15 +17,14 @@ public class StudentCourseModel {
      * Time : 8 am      Storage : 0800
      * Time : 12 pm     Storage : 1200
      * Time : 3:15 pm   Storage : 1515
-     * Time : 8:55 pm   Storage : 2055
-     */
+     * Time : 8:55 pm   Storage : 2055 */
 
     private int courseId;
     private String courseName;
     private int courseTermId;
     private String courseLocation;
-    private int courseStartTime;
-    private int courseEndTime;
+    private long courseStartTime;
+    private long courseEndTime;
 
     public int getCourseId() {
         return courseId;
@@ -59,19 +58,19 @@ public class StudentCourseModel {
         this.courseLocation = courseLocation;
     }
 
-    public int getCourseStartTime() {
+    public long getCourseStartTime() {
         return courseStartTime;
     }
 
-    public void setCourseStartTime(int courseStartTime) {
+    public void setCourseStartTime(long courseStartTime) {
         this.courseStartTime = courseStartTime;
     }
 
-    public int getCourseEndTime() {
+    public long getCourseEndTime() {
         return courseEndTime;
     }
 
-    public void setCourseEndTime(int courseEndTime) {
+    public void setCourseEndTime(long courseEndTime) {
         this.courseEndTime = courseEndTime;
     }
 

@@ -8,7 +8,7 @@ package shreyas.io.weld.azaro.Model;
  * This model will store details of project phases.
  */
 
-public class StudentProjectPhasesModel {
+public class ProjectPhase {
 
     private int projectId;
     private int courseId;

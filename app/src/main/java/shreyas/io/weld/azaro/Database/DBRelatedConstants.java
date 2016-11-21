@@ -1,12 +1,7 @@
 package shreyas.io.weld.azaro.Database;
 
-/**
- * Created by shreyas on 14/11/16.
- */
-
-/**
- * This class contains all table and column names for DB.
- */
+/* Created by shreyas on 14/11/16.
+ * This class contains all table and column names for DB. */
 
 public class DBRelatedConstants {
     // Database Version
@@ -45,6 +40,8 @@ public class DBRelatedConstants {
     public static final String TASK_TASKNAME = "task_name";
     public static final String TASK_TASKDESCRIPTION = "task_description";
     public static final String TASK_TASKDUEDATE = "task_due_date";
+    public static final String TASK_TASKDUETIME = "task_due_time";
+    public static final String TASK_TYPE = "task_type";
 
     // Columns for Task_Attachments table
     public static final String TASKATTACHMENT_ATTACHMENTID = "task_attachment_id";
@@ -117,6 +114,8 @@ public class DBRelatedConstants {
             + TASK_TASKNAME + " TEXT, "
             + TASK_TASKDESCRIPTION + " TEXT, "
             + TASK_TASKDUEDATE + " INTEGER, "
+            + TASK_TASKDUETIME + " INTEGER,"
+            + TASK_TYPE + " INTEGER,"
             + "FOREIGN KEY( " + TASK_TASKCOURSEID +") REFERENCES " + TABLE_COURSES + "(" + COURSE_ID +")"
             + ")";
 

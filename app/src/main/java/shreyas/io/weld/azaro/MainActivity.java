@@ -19,18 +19,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
-import java.util.List;
-
 import shreyas.io.weld.azaro.Database.DBHelper;
-import shreyas.io.weld.azaro.Model.StudentCourseModel;
-import shreyas.io.weld.azaro.Model.StudentTermModel;
+import shreyas.io.weld.azaro.Model.Course;
+import shreyas.io.weld.azaro.Model.Project;
+import shreyas.io.weld.azaro.Model.Task;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, CourseFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, CourseFragment.OnListFragmentInteractionListener,
+                    TaskFragment.OnListFragmentInteractionListener, ProjectFragment.OnListFragmentInteractionListener{
 
     public int currentfragment = 0;
     // Database Helper
@@ -45,39 +44,10 @@ public class MainActivity extends AppCompatActivity
         //db operations
         db = new DBHelper(getApplicationContext());
         //fillup db
-         StudentTermModel inputValue1 = new StudentTermModel();
-        inputValue1.setTermName("Fall 2015");
-        inputValue1.setTermStartDate(20150820);
-        inputValue1.setTermEndDate(20151212);
-        db.addNewTerm(inputValue1);
-        StudentCourseModel inp1= new StudentCourseModel();
-        inp1.setCourseId(921);
-        inp1.setCourseName("Alladin");
-        inp1.setCourseTermId(69);
-        db.addNewCourse(inp1);
 
-        StudentCourseModel inp2= new StudentCourseModel();
-        inp2.setCourseId(340);
-        inp2.setCourseName("Shreyas");
-        inp2.setCourseTermId(65);
-        db.addNewCourse(inp2);
+        //DUMP DATABASE
+        //context.deleteDatabase(db);
 
-
-        List<StudentTermModel> allTermsValues = db.getAllTerms();
-        for (StudentTermModel term : allTermsValues) {
-            Log.d("Term id", ": " +term.getTermId());
-            Log.d("Term Name",": "+term.getTermName());
-            Log.d("Term StartDate", ": " + term.getTermStartDate());
-            Log.d("Term Name", ": " + term.getTermEndDate());
-        }
-
-        List<StudentCourseModel> allCoursesValues = db.getAllCourses();
-        for(StudentCourseModel course : allCoursesValues){
-            Log.d("CourseId",": "+course.getCourseId());
-            Log.d("CourseName",": "+course.getCourseName());
-            Log.d("CourseTermId",": "+course.getCourseTermId());
-        }
-        //db Operations done
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,16 +62,21 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 if(currentfragment == 1){
-                    //launch related activity
+                    //
+
                 }else if(currentfragment == 2){
-                    //launch related activity
+                    Intent myIntent = new Intent(MainActivity.this, TaskActivity.class);
+                    myIntent.putExtra("key", 2); //Optional parameters
+                    MainActivity.this.startActivity(myIntent);
                 }else if(currentfragment == 3){
                     //launch related activity
                     Intent myIntent = new Intent(MainActivity.this, AddCourseActivity.class);
                     myIntent.putExtra("key", 3); //Optional parameters
                     MainActivity.this.startActivity(myIntent);
-
-                } else {
+                }else if(currentfragment == 4){
+                    Intent myIntent = new Intent(MainActivity.this, ProjectActivity.class);
+                    myIntent.putExtra("key", 4); //Optional parameters
+                    MainActivity.this.startActivity(myIntent);
 
                 }
             }
@@ -157,17 +132,23 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         Fragment fragment = null;
-        if (id == R.id.nav_subject_fragment) {
-            // Handle the camera action
-            fragment = FirstFragment.newInstance();
-            currentfragment = 1;
-        } else if (id == R.id.nav_gallery) {
-            fragment = SecondFragment.newInstance(null, null);
+        if (id == R.id.nav_dashboard_fragment) {
+            // Stay on Homepage
+        }
+        else if (id == R.id.nav_task_fragment) {
+            fragment = TaskFragment.newInstance(2);
             currentfragment = 2;
-        } else if (id == R.id.nav_slideshow) {
-            fragment = CourseFragment.newInstance(6);
+        }
+        else if (id == R.id.nav_course) {
+            fragment = CourseFragment.newInstance(3);
             currentfragment = 3;
-        } else if (id == R.id.nav_manage) {
+        }
+        else if (id == R.id.nav_project) {
+            fragment = ProjectFragment.newInstance(4);
+            currentfragment = 4;
+        }
+
+        else if (id == R.id.nav_navigation) {
 
         }
 
@@ -189,60 +170,61 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     @Override
-    public void onListFragmentInteraction(StudentCourseModel item) {
+    public void onListFragmentInteraction(final Course item) {
 
         //first show an alert dialog to edit/delete. on delete click call delete method. on edit click
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(MainActivity.this);
         builderSingle.setIcon(R.drawable.ic_speaker_dark);
-        builderSingle.setTitle("Select One Name:-");
+        builderSingle.setTitle("Edit Course "+ item.getCourseName());
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                MainActivity.this,
-                R.layout.dialog_item_layout);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.dialog_item_layout);
+
         arrayAdapter.add("Update");
         arrayAdapter.add("Delete");
 
-        builderSingle.setNegativeButton(
-                "cancel",
-                new DialogInterface.OnClickListener() {
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
+                        dialog.dismiss(); }
                 });
 
-        builderSingle.setAdapter(
-                arrayAdapter,
-                new DialogInterface.OnClickListener() {
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String strName = arrayAdapter.getItem(which);
                         if(strName.equalsIgnoreCase("Update") ){
-                        AlertDialog.Builder builderInner = new AlertDialog.Builder(
-                                MainActivity.this);
-                        builderInner.setMessage(strName);
+                        final AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+                            final EditText input = new EditText(MainActivity.this);
+                            final EditText input2 = new EditText(MainActivity.this);
+
+                            builderInner.setMessage(strName);
                         builderInner.setTitle("Update Relevant Info");
 
-                        // Set up the Edit Text Containing Information
-                        final EditText input = new EditText(MainActivity.this);
-// Specify the type of input expected; this, fo
-// r example, sets the input as a password, and will mask the text
-                        input.setInputType(InputType.TYPE_CLASS_TEXT);
-                        builderInner.setView(input);
 
-                        // Set up the buttons
+                        // Set up the Edit Text Containing Information
+                            input.setInputType(InputType.TYPE_CLASS_TEXT);
+                            builderInner.setView(input);
+                            input2.setInputType(InputType.TYPE_CLASS_TEXT);
+                            builderInner.setView(input2);
+
+                            final EditText input3 = new EditText(MainActivity.this);
+
+                           // EditText mEditCourseName = (EditText) findViewById(R.id.EditCourseNameDialogueBx);
+
+                            // Set up the buttons
                         builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 m_Text = input.getText().toString();
+                                m_Text = input2.getText().toString();
                             }
                         });
 
 
-                        builderInner.setPositiveButton(
-                                "Ok",
-                                new DialogInterface.OnClickListener() {
+                        builderInner.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(
                                             DialogInterface dialog,
@@ -252,7 +234,7 @@ public class MainActivity extends AppCompatActivity
                                 });
                         builderInner.show();
                     }else{  // Delete selected , implement it
-
+                            db.deleteCourse(item);
                         }
 
 
@@ -261,11 +243,16 @@ public class MainActivity extends AppCompatActivity
         builderSingle.show();
         //for alert dialogue
 
-
-
         //this is the item which was clicked.
         //display all info in an alert dialog in edit texts. but button save. on click of that button
         //call updatestudentcourse method and pass the new updated student course object
         //
+    }
+    @Override
+    public void onListFragmentInteraction(Task item) {
+    }
+
+    @Override
+    public void onListFragmentInteraction(Project item) {
     }
 }

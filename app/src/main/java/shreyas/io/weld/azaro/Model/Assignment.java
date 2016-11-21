@@ -8,7 +8,7 @@ package shreyas.io.weld.azaro.Model;
  * This model is used to store attchment details of Assignments.
  */
 
-public class StudentAssignmentModel {
+public class Assignment {
 
     private int assignmentId;
     private int assignmentCourseId;

@@ -2,17 +2,15 @@ package shreyas.io.weld.azaro;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.app.LoaderManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.AsyncTask;
-
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,17 +24,13 @@ import java.util.Calendar;
 import java.util.List;
 
 import shreyas.io.weld.azaro.Database.DBHelper;
-import shreyas.io.weld.azaro.Model.Course;
+import shreyas.io.weld.azaro.Model.Project;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class AddCourseActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>,View.OnClickListener{
+public class ProjectActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,View.OnClickListener{
 
     private static final int REQUEST_READ_CONTACTS = 0;
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };private UserLoginTask mAuthTask = null;
+    private static final String[] DUMMY_CREDENTIALS = new String[]{"foo@example.com:hello", "bar@example.com:world"};
+    private UserLoginTask mAuthTask = null;
 
     // UI references.
     //create variables for storing message & button objects
@@ -45,8 +39,8 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
     private View mProgressView;
     private View mLoginFormView;
 
-    private EditText mEditCourseName;
-    private EditText mEditCourseLocationView;
+    private EditText mEditProjectName;
+    private EditText mEditProjectDescriptionView;
     private EditText mEditCourseStartTime;
     private EditText mEditCourseEndTime;
     private EditText mEditCourseTimePeriod;
@@ -65,13 +59,12 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         setContentView(R.layout.activity_add_course);
 
         //make message text field & button object
-        mEditCourseName = (EditText) findViewById(R.id.EditCourseName);
-        mEditCourseLocationView = (EditText) findViewById(R.id.EditCourseLocation);
-       // mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
-       // mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
-       // mEditCourseTimePeriod = (EditText) findViewById(R.id.EditCourseTimePeriod);
+        mEditProjectName = (EditText) findViewById(R.id.EditCourseName);
+        mEditProjectDescriptionView = (EditText) findViewById(R.id.EditCourseLocation);
+        // mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
+        // mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
+        // mEditCourseTimePeriod = (EditText) findViewById(R.id.EditCourseTimePeriod);
         mSaveButton = (Button) findViewById(R.id.save_button);
-
 
         /*
         TimePicker tp = (TimePicker)dialog.findViewById(R.id.timepicker1);
@@ -98,7 +91,7 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         //    Extras are retrieved on the other side via:
         Intent intent = getIntent();
         String value = intent.getStringExtra("key"); //if it's a string you stored.
-      }
+    }
 
 
     @Override
@@ -147,12 +140,12 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         // ADD TO DATABASE
         db = new DBHelper(getApplicationContext());
 
-        Course input1= new Course();
-        input1.setCourseName( mEditCourseName.getText().toString());
-        input1.setCourseLocation( mEditCourseLocationView.getText().toString());
-      //  input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
-      //  input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
-        db.addNewCourse(input1);
+        Project input1= new Project();
+        input1.setProjectName ( mEditProjectName.getText().toString());
+        input1.setProjectDescription( mEditProjectDescriptionView.getText().toString());
+        //  input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
+        //  input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
+      //  db.addNewCourse(input1);
         finish();
     }
 
@@ -252,7 +245,7 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(AddCourseActivity.this,
+                new ArrayAdapter<>(ProjectActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -296,4 +289,3 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         }
     }
 }
-

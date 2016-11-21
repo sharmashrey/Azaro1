@@ -8,7 +8,7 @@ package shreyas.io.weld.azaro.Model;
  * This model will store details of project phase attachments.
  */
 
-public class ProjectPhaseAttachmentsModel {
+public class ProjectPhaseAttachment {
 
     private int attachmentId;
     private int projectId;

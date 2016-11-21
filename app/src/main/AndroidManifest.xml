@@ -30,10 +30,9 @@
             android:name=".AddCourseActivity"
             android:label="@string/title_activity_add_course" />
         <activity
-            android:name=".AddTaskActivity"
-            android:label="@string/title_activity_add_task"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddExamActivity"></activity>
+            android:name=".TaskActivity"
+            android:label="@string/title_activity_add_task" />
+        <activity android:name=".ProjectActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- new layout  -->
+    <TextView
+        android:id="@+id/task_name"
+        android:textColor="@color/title"
+        android:text="task name"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/task_course_id"
+        android:layout_below="@id/task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="551"
+        android:textColor="@android:color/black"
+        android:padding="2dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/task_description"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        android:text="345"
+        android:padding="2dp"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+
+</LinearLayout>

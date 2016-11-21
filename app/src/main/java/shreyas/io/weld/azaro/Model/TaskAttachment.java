@@ -8,7 +8,7 @@ package shreyas.io.weld.azaro.Model;
  * This model is used to store attachments details of Task.
  */
 
-public class TaskAttachmentsModel {
+public class TaskAttachment {
 
     private int attachmentId;
     private int taskId;
