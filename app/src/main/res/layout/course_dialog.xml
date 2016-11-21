@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="shreyas.io.weld.azaro.MainActivity"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/EditDialogCourseName"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:layout_width="fill_parent">
+    </EditText>
+    <EditText
+        android:id="@+id/EditDialogCourseLocation"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:layout_width="fill_parent">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_weight="0.08"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="213dp"
+            android:id="@+id/in_edit_date"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.27"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_edit_date"
+            android:layout_toEndOf="@+id/btn_edit_date" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_weight="0.08"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="213dp"
+            android:id="@+id/in_edit_time"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.27"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_edit_time"
+            android:layout_toEndOf="@+id/btn_edit_time" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/save_cedit_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/save_button"
+        android:textStyle="bold"
+        android:onClick="handleditcourse"/>
+
+</LinearLayout>

@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import shreyas.io.weld.azaro.Database.DBHelper;
 import shreyas.io.weld.azaro.Model.Course;
@@ -59,8 +62,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //on click of floating button, start new activity
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 if(currentfragment == 1){
                     //
 
@@ -195,31 +196,40 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         String strName = arrayAdapter.getItem(which);
                         if(strName.equalsIgnoreCase("Update") ){
-                        final AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
-                            final EditText input = new EditText(MainActivity.this);
-                            final EditText input2 = new EditText(MainActivity.this);
 
-                            builderInner.setMessage(strName);
-                        builderInner.setTitle("Update Relevant Info");
+                            final AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+                            final LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                            View myView=inflater.inflate(R.layout.course_dialog,null);
+                            builderInner.setView(myView);
+
+                            final EditText mEditCourseName = (EditText) myView.findViewById(R.id.EditDialogCourseName);
+                            mEditCourseName.setText(item.getCourseName());
+                            final EditText mEditCourseLocation = (EditText) myView.findViewById(R.id.EditDialogCourseLocation);
+                            mEditCourseLocation.setText(item.getCourseLocation());
+
+                            final EditText mEditCourseDate = (EditText) myView.findViewById(R.id.in_edit_date);
+                            mEditCourseDate.setText(new Long(item.getCourseStartTime()).toString());
+                            final EditText in_edit_time = (EditText) myView.findViewById(R.id.in_edit_time);
+                            in_edit_time.setText(new Long(item.getCourseEndTime()).toString());
 
 
-                        // Set up the Edit Text Containing Information
-                            input.setInputType(InputType.TYPE_CLASS_TEXT);
-                            builderInner.setView(input);
-                            input2.setInputType(InputType.TYPE_CLASS_TEXT);
-                            builderInner.setView(input2);
 
-                            final EditText input3 = new EditText(MainActivity.this);
+                            //   Log.d("my", "onClick: "+mEditCourseName);
+                            // Set up the buttons*/
+                            builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                           // EditText mEditCourseName = (EditText) findViewById(R.id.EditCourseNameDialogueBx);
-
-                            // Set up the buttons
-                        builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                               /* Course newcourse=new Course();
+                                newcourse.setCourseId(item.getCourseId());
+                                newcourse.setCourseName(mEditCourseName.getText().toString());
 
-                                m_Text = input.getText().toString();
-                                m_Text = input2.getText().toString();
+                                newcourse.setCourseLocation(mEditCourseLocation.getText().toString());*/
+
+                                //newcourse.setCourseStartTime(;
+                                //db.updateCourse(item);
+                               /* m_Text = input.getText().toString();
+                                m_Text = input2.getText().toString();*/
                             }
                         });
 
@@ -254,5 +264,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Project item) {
+    }
+
+    public void handleditcourse(View view) {
+        // TODO Auto-generated method stub
     }
 }

@@ -172,7 +172,20 @@ public class DBHelper  extends SQLiteOpenHelper {
         //use sqlite db.delete method to delete row having that course id, use this in where
     }
 
+    public void updateCourse(Course course){
 
+        String strSQL = "UPDATE Course SET "+
+                DBRelatedConstants.COURSE_COURSENAME +"="+ course.getCourseName()+", "
+                +DBRelatedConstants.COURSE_TERMID +"="+ course.getCourseTermId()+", "
+                +DBRelatedConstants.COURSE_COURSELOCATION +"="+ course.getCourseLocation()+", "
+                + DBRelatedConstants.COURSE_COURSESTARTTIME +"="+ course.getCourseStartTime()+", "
+                + DBRelatedConstants.COURSE_COURSEENDTIME +"="+ course.getCourseEndTime()
+
+                +" WHERE"+ DBRelatedConstants.COURSE_ID +"=" + course.getCourseId();
+        Log.d("updatecourse", "updateCourse: "+strSQL);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(strSQL);
+    }
     public List<Course> getAllCourses(){
         List<Course> outputTermValues = new ArrayList<Course>();
 

@@ -67,8 +67,8 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         //make message text field & button object
         mEditCourseName = (EditText) findViewById(R.id.EditCourseName);
         mEditCourseLocationView = (EditText) findViewById(R.id.EditCourseLocation);
-       // mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
-       // mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
+        //mEditCourseStartTime = (EditText) findViewById(R.id.EditCourseStartTime);
+        //mEditCourseEndTime = (EditText) findViewById(R.id.EditCourseEndTime);
        // mEditCourseTimePeriod = (EditText) findViewById(R.id.EditCourseTimePeriod);
         mSaveButton = (Button) findViewById(R.id.save_button);
 
@@ -103,7 +103,8 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
 
     @Override
     public void onClick(View v) {
-        if (v == btnDatePicker) {
+        int id = v.getId();
+        if (id == R.id.btn_date) {
             // Get Current Date
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
@@ -118,8 +119,7 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
-        }
-        if (v == btnTimePicker) {
+        } else if (id == R.id.btn_time) {
 
             // Get Current Time
             final Calendar c = Calendar.getInstance();
@@ -138,11 +138,13 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
+        } else if(id == R.id.save_button){
+            send();
         }
     }
 
     //When the send button is clicked
-    public void send(View v)
+    public void send()
     {
         // ADD TO DATABASE
         db = new DBHelper(getApplicationContext());
@@ -150,8 +152,8 @@ public class AddCourseActivity extends AppCompatActivity implements LoaderCallba
         Course input1= new Course();
         input1.setCourseName( mEditCourseName.getText().toString());
         input1.setCourseLocation( mEditCourseLocationView.getText().toString());
-      //  input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
-      //  input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
+        input1.setCourseStartTime( Integer.parseInt(mEditCourseStartTime.getText().toString()) );
+        input1.setCourseEndTime( Integer.parseInt(mEditCourseEndTime.getText().toString()) );
         db.addNewCourse(input1);
         finish();
     }
